@@ -14,4 +14,12 @@ public class Task {
 	public void Done(){
 		this.mark="\u2713";
 	}
+
+	@Override
+	public String toString(){
+		return String.format("%s", this.item);
+	}
+
+
+
 }

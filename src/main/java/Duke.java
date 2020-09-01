@@ -1,43 +1,35 @@
 import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
-        String line;
+        String userInput;
+        int taskIndex=0;
         Scanner in = new Scanner(System.in);
-        String[][] list=new String[100][100];
-        int i=0;
-        /*String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);*/
+        Task[] listOfTasks=new Task[100];
         System.out.println("Hello! I'm Groot");
         System.out.println("What can I do for you?");
-        line = in.nextLine();
-        while(!line.equalsIgnoreCase("bye")){
-            if(!line.equalsIgnoreCase("list")){
-                if(line.length()>4&&line.contains("done")){
-                    int a=Integer.parseInt(line.substring(5));
-                    a=a-1;
-                    list[0][a]="\u2713";
-                    System.out.println("Nice! I've marked this task as done:\n"+"\u2713 "+list[1][a]);
+        userInput = in.nextLine();
+        while(!userInput.equalsIgnoreCase("bye")){
+            if(!userInput.equalsIgnoreCase("list")){
+                if(userInput.length()>4&&userInput.contains("done")){
+                    int doneTaskNo=Integer.parseInt(userInput.substring(5))-1;
+                    listOfTasks[doneTaskNo].Done();
+                    System.out.println("Nice! I've marked this task as done:\n"+"\u2713 "+listOfTasks[doneTaskNo]);
                 }
                 else {
-                    list[1][i] = line;
-                    list[0][i] = "\u2717";
-                    i++;
-                    System.out.println(line);
+                    Task item=new Task(userInput);
+                    listOfTasks[taskIndex] = item;
+                    taskIndex++;
+                    System.out.println(userInput);
                 }
             }
             else {
                 System.out.println("Here are the tasks in your list: ");
-                for (int x = 0; x < i; x++) {
+                for (int x = 0; x < taskIndex; x++) {
                     int j = x + 1;
-                    System.out.println(j + "." + list[0][x] + " " + list[1][x]);
+                    System.out.println(j + "." + listOfTasks[x].getMark() + " " + listOfTasks[x].toString());
                 }
             }
-
-            line = in.nextLine();
+            userInput = in.nextLine();
         }
         System.out.println("Bye. Hope to see you again soon!");
     }
