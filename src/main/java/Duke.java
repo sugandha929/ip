@@ -13,7 +13,8 @@ public class Duke {
                 if(userInput.length()>4 && userInput.contains("done")){
                     int doneTaskNo=Integer.parseInt(userInput.substring(5))-1;
                     listOfTasks[doneTaskNo].Done();
-                    System.out.println("Nice! I've marked this task as done:\n"+"[\u2713] "+listOfTasks[doneTaskNo]);
+                    System.out.println("Nice! I've marked this task as done:\n"+"[\u2713] "+
+                            listOfTasks[doneTaskNo]);
                 }
                 else {
                     if(userInput.length()>4 && userInput.contains("todo")){
@@ -22,17 +23,20 @@ public class Duke {
                     }
                     else if(userInput.length()>8 && userInput.contains("deadline")){
                         int slashIndex=userInput.indexOf("/");
-                        Deadlines item=new Deadlines(userInput.substring(9, (slashIndex-1)), userInput.substring(slashIndex+4));
+                        Deadlines item=new Deadlines(userInput.substring(9, (slashIndex-1)),
+                                userInput.substring(slashIndex+4));
                         listOfTasks[taskIndex] = item;
                     }
                     else if(userInput.length()>5 && userInput.contains("event")){
                         int slashIndex=userInput.indexOf("/");
-                        Events item=new Events(userInput.substring(6, (slashIndex-1)), userInput.substring(slashIndex+4));
+                        Events item=new Events(userInput.substring(6, (slashIndex-1)),
+                                userInput.substring(slashIndex+4));
                         listOfTasks[taskIndex] = item;
                     }
 
                     System.out.println("Got it. I've added this task: ");
-                    System.out.println(listOfTasks[taskIndex].getType()+listOfTasks[taskIndex].getMark()+" "+ listOfTasks[taskIndex]);
+                    System.out.println(listOfTasks[taskIndex].getType()+listOfTasks[taskIndex].getMark()+
+                            " "+ listOfTasks[taskIndex]);
                     System.out.println("Now you have "+ (taskIndex+1) +" tasks in the list.");
                     taskIndex++;
                 }
@@ -41,7 +45,8 @@ public class Duke {
                 System.out.println("Here are the tasks in your list: ");
                 for (int x = 0; x < taskIndex; x++) {
                     int j = x + 1;
-                    System.out.println(j + "." + listOfTasks[x].getType() + listOfTasks[x].getMark() + " " + listOfTasks[x].toString());
+                    System.out.println(j + "." + listOfTasks[x].getType() + listOfTasks[x].getMark() +
+                            " " + listOfTasks[x].toString());
                 }
             }
             userInput = in.nextLine();
