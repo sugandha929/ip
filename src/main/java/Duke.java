@@ -1,28 +1,37 @@
 import exception.commandException;
+
 import task.Deadlines;
 import task.Events;
 import task.Task;
 import task.ToDos;
 
 import java.util.Scanner;
+
 public class Duke {
+
     public static void main (String[] args) throws commandException {
         String userInput;
         int taskIndex=0;
         Scanner in = new Scanner(System.in);
         Task[] listOfTasks=new Task[100];
+
         System.out.println("Hello! I'm Groot");
         System.out.println("What can I do for you?");
+
         userInput = in.nextLine();
+
         try {
             while (!userInput.equalsIgnoreCase("bye")) {
+
                 if (!userInput.equalsIgnoreCase("list")) {
+
                     if (userInput.length() > 4 && userInput.contains("done")) {
                         int doneTaskNo = Integer.parseInt(userInput.substring(5)) - 1;
                         listOfTasks[doneTaskNo].Done();
                         System.out.println("Nice! I've marked this task as done:\n" + "[\u2713] " +
                                 listOfTasks[doneTaskNo]);
                     } else {
+
                         if (userInput.length() > 4 && userInput.contains("todo")) {
                             ToDos item = new ToDos(userInput.substring(5));
                             listOfTasks[taskIndex] = item;
@@ -54,22 +63,21 @@ public class Duke {
                         System.out.println(j + "." + listOfTasks[x].getType() + listOfTasks[x].getMark() +
                                 " " + listOfTasks[x].toString());
                     }
-                }
-                else{
+                } else{
                     throw new commandException();
                 }
                 userInput = in.nextLine();
             }
+
             System.out.println("Bye. Hope to see you again soon!");
-        }
-        catch (commandException e){
+        } catch (commandException e){
             executeException(userInput);
-        }
-        catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e){
             System.out.println("☹ OOPS! The date of a deadline or event cannot be empty");
         }
 
     }
+
     public static void executeException(String input){
         if (input.equals("todo")){
             System.out.println("☹ OOPS! The description of a todo cannot be empty.");
@@ -84,4 +92,5 @@ public class Duke {
             System.out.println("☹ OOPS! command invalid.");
         }
     }
+
 }
