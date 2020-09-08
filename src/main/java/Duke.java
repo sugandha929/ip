@@ -1,6 +1,12 @@
+import exception.commandException;
+import task.Deadlines;
+import task.Events;
+import task.Task;
+import task.ToDos;
+
 import java.util.Scanner;
 public class Duke {
-    public static void main (String[] args) throws commandException{
+    public static void main (String[] args) throws commandException {
         String userInput;
         int taskIndex=0;
         Scanner in = new Scanner(System.in);
@@ -59,16 +65,19 @@ public class Duke {
         catch (commandException e){
             executeException(userInput);
         }
+        catch (IndexOutOfBoundsException e){
+            System.out.println("☹ OOPS! The date of a deadline or event cannot be empty");
+        }
 
     }
     public static void executeException(String input){
         if (input.equals("todo")){
             System.out.println("☹ OOPS! The description of a todo cannot be empty.");
         }
-        else if(input.equals("deadline")){
+        else if(input.contains("deadline")){
             System.out.println("☹ OOPS! The description of a deadline cannot be empty.");
         }
-        else if(input.equals("event")){
+        else if(input.contains("event")){
             System.out.println("☹ OOPS! The description of a event cannot be empty.");
         }
         else{
