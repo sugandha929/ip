@@ -15,7 +15,7 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         Task[] listOfTasks=new Task[100];
 
-        System.out.println("Hello! I'm Groot");
+        System.out.println("Hello! I'm Groot \u0043");
         System.out.println("What can I do for you?");
 
         userInput = in.nextLine();
