@@ -14,6 +14,7 @@ public class Duke {
 
     public static void main(String[] args) throws commandException, IOException, ClassNotFoundException {
         int taskIndex = 0;
+
         Scanner in = new Scanner(System.in);
 
         System.out.println("Hello! I am Groot");
@@ -33,11 +34,11 @@ public class Duke {
                         }
 
                         System.out.println("Here are the tasks in your list: ");
-
                         for(slashIndex = 0; slashIndex < taskIndex; ++slashIndex) {
                             int j = slashIndex + 1;
                             System.out.println(j + "." + ((Task)listOfTasks.get(slashIndex)).getType() + ((Task)listOfTasks.get(slashIndex)).getMark() + " " + ((Task)listOfTasks.get(slashIndex)).toString());
                         }
+
                     } else {
                         PrintStream var10000;
                         String var10001;
@@ -70,7 +71,6 @@ public class Duke {
                                 if (userInput.length() <= 5 || !userInput.contains("event")) {
                                     throw new commandException();
                                 }
-
                                 slashIndex = userInput.indexOf("/");
                                 Events item = new Events(userInput.substring(6, slashIndex - 1), userInput.substring(slashIndex + 4));
                                 listOfTasks.add(item);
@@ -120,7 +120,6 @@ public class Duke {
                 String var10001 = ((Task) listOfTasks.get(listOfTasks.indexOf(s))).getType();
                 writer.write(var10001 + ((Task) listOfTasks.get(listOfTasks.indexOf(s))).getMark() + listOfTasks.get(listOfTasks.indexOf(s)) + "\n");
             }
-
             writer.close();
         } catch (FileNotFoundException e) {
             System.out.println("There was no existing file, so new file created");
