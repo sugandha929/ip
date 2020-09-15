@@ -9,7 +9,8 @@ import java.util.Scanner;
 
 public class Duke {
 
-    public static void main (String[] args) throws commandException {
+    public static void main (String[] args) throws commandException{
+
         String userInput;
         int taskIndex=0;
         Scanner in = new Scanner(System.in);
@@ -20,18 +21,27 @@ public class Duke {
 
         userInput = in.nextLine();
 
+
         try {
             while (!userInput.equalsIgnoreCase("bye")) {
 
                 if (!userInput.equalsIgnoreCase("list")) {
 
+=======
+        try {
+            while (!userInput.equalsIgnoreCase("bye")) {
+                if (!userInput.equalsIgnoreCase("list")) {
+>>>>>>> Stashed changes
                     if (userInput.length() > 4 && userInput.contains("done")) {
                         int doneTaskNo = Integer.parseInt(userInput.substring(5)) - 1;
                         listOfTasks[doneTaskNo].Done();
                         System.out.println("Nice! I've marked this task as done:\n" + "[\u2713] " +
                                 listOfTasks[doneTaskNo]);
                     } else {
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                         if (userInput.length() > 4 && userInput.contains("todo")) {
                             ToDos item = new ToDos(userInput.substring(5));
                             listOfTasks[taskIndex] = item;
@@ -63,11 +73,17 @@ public class Duke {
                         System.out.println(j + "." + listOfTasks[x].getType() + listOfTasks[x].getMark() +
                                 " " + listOfTasks[x].toString());
                     }
+<<<<<<< Updated upstream
                 } else{
+=======
+                }
+                else{
+>>>>>>> Stashed changes
                     throw new commandException();
                 }
                 userInput = in.nextLine();
             }
+<<<<<<< Updated upstream
 
             System.out.println("Bye. Hope to see you again soon!");
         } catch (commandException e){
@@ -78,14 +94,30 @@ public class Duke {
 
     }
 
+=======
+            System.out.println("Bye. Hope to see you again soon!");
+        }
+        catch (commandException e){
+            executeException(userInput);
+        }
+
+    }
+>>>>>>> Stashed changes
     public static void executeException(String input){
         if (input.equals("todo")){
             System.out.println("☹ OOPS! The description of a todo cannot be empty.");
         }
+<<<<<<< Updated upstream
         else if(input.contains("deadline")){
             System.out.println("☹ OOPS! The description of a deadline cannot be empty.");
         }
         else if(input.contains("event")){
+=======
+        else if(input.equals("deadline")){
+            System.out.println("☹ OOPS! The description of a deadline cannot be empty.");
+        }
+        else if(input.equals("event")){
+>>>>>>> Stashed changes
             System.out.println("☹ OOPS! The description of a event cannot be empty.");
         }
         else{
