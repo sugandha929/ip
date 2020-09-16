@@ -24,12 +24,11 @@ public class Duke {
     }
 
     public static void main(String[] args) throws commandException, IOException, ClassNotFoundException {
-        int taskIndex = 0;
         Scanner in = new Scanner(System.in);
         System.out.println("Hello! I am Groot");
         System.out.println("What can I do for you?");
         System.out.println("Please find your previous list items below: ");
-        read("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
+        int taskIndex=read("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
         String userInput = in.nextLine();
 
         while(true) {
@@ -47,9 +46,11 @@ public class Duke {
 
                     System.out.println("Here are the tasks in your list: ");
 
-                    for(slashIndex = 0; slashIndex < taskIndex; ++slashIndex) {
-                        int j = slashIndex + 1;
-                        System.out.println(j + "." + ((Task)listOfTasks.get(slashIndex)).getType() + ((Task)listOfTasks.get(slashIndex)).getMark() + " " + ((Task)listOfTasks.get(slashIndex)).toString());
+                    for(int index = 0; index < listOfTasks.size(); ++index) {
+                        int j = index + 1;
+                        System.out.println(j + "." + ((Task)listOfTasks.get(index)).getType() +
+                                ((Task)listOfTasks.get(index)).getMark() + " " +
+                                ((Task)listOfTasks.get(index)).toString());
                     }
                 } else {
                     PrintStream var10000;
@@ -58,7 +59,8 @@ public class Duke {
                         slashIndex = Integer.parseInt(userInput.substring(7)) - 1;
                         var10000 = System.out;
                         var10001 = ((Task)listOfTasks.get(slashIndex)).getType();
-                        var10000.println("Noted. I've removed this task:\n   " + var10001 + ((Task)listOfTasks.get(slashIndex)).getMark() + " " + listOfTasks.get(slashIndex));
+                        var10000.println("Noted. I've removed this task:\n   " + var10001 +
+                                ((Task)listOfTasks.get(slashIndex)).getMark() + " " + listOfTasks.get(slashIndex));
                         listOfTasks.remove(slashIndex);
                         System.out.println("Now you have " + listOfTasks.size() + " tasks in the list.");
                         save();
@@ -75,17 +77,32 @@ public class Duke {
                             listOfTasks.add(item);
                             save();
                         } else if (userInput.length() > 8 && userInput.contains("deadline")) {
-                            slashIndex = userInput.indexOf("/");
-                            Deadlines item = new Deadlines(userInput.substring(9, slashIndex - 1), userInput.substring(slashIndex + 4));
+                            slashIndex = userInput.indexOf("by");
+                            int a;
+                            if (userInput.contains("/")){
+                                a = 2;
+                            }
+                            else {
+                                a = 1;
+                            }
+                            Deadlines item = new Deadlines(userInput.substring(9, slashIndex - a),
+                                    userInput.substring(slashIndex + 3));
                             listOfTasks.add(item);
                             save();
                         } else {
                             if (userInput.length() <= 5 || !userInput.contains("event")) {
                                 throw new commandException();
                             }
-
-                            slashIndex = userInput.indexOf("/");
-                            Events item = new Events(userInput.substring(6, slashIndex - 1), userInput.substring(slashIndex + 4));
+                            slashIndex = userInput.indexOf("at");
+                            int a;
+                            if (userInput.contains("/")){
+                                a = 2;
+                            }
+                            else {
+                                a = 1;
+                            }
+                            Events item = new Events(userInput.substring(6, slashIndex - a),
+                                    userInput.substring(slashIndex + 3));
                             listOfTasks.add(item);
                             save();
                         }
@@ -123,13 +140,14 @@ public class Duke {
 
     public static void save() throws IOException, FileNotFoundException {
         try {
-            FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt", true);
+            FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
             Iterator var1 = listOfTasks.iterator();
 
             while(var1.hasNext()) {
                 Task s = (Task)var1.next();
                 String var10001 = ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getType();
-                writer.write(var10001 + ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getMark() + listOfTasks.get(listOfTasks.indexOf(s)) + "\n");
+                writer.write(var10001 + ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getMark() +
+                        listOfTasks.get(listOfTasks.indexOf(s)) + "\n");
             }
 
             writer.close();
@@ -143,16 +161,36 @@ public class Duke {
 
     }
 
-    public static void read(String fileName) throws IOException, FileNotFoundException {
+    public static int read(String fileName) throws IOException, FileNotFoundException {
+        int taskIndex=0;
         try {
             File file = new File(fileName);
             Scanner readfile = new Scanner(file);
             String line = null;
-
+            int dateIndex;
             while(readfile.hasNext()) {
                 line = readfile.nextLine();
+                if (line.contains("[T]")){
+                    ToDos item=new ToDos(line.substring(6));
+                    listOfTasks.add(item);
+                }
+                else if(line.contains("[D]")){
+                    dateIndex = line.indexOf("(");
+                    Deadlines item = new Deadlines(line.substring(6, dateIndex - 1), line.substring(dateIndex + 4));
+                    listOfTasks.add(item);
+                }
+                else{
+                    dateIndex = line.indexOf("(");
+                    Events item = new Events(line.substring(6, dateIndex - 1), line.substring(dateIndex + 4));
+                    listOfTasks.add(item);
+                }
+                if(line.substring(4, 5).equals("✓")){
+                    listOfTasks.get(taskIndex).Done();
+                }
                 System.out.println(line);
+                taskIndex++;
             }
+
         } catch (FileNotFoundException var4) {
             System.out.println("There was no existing file, so new file created");
             FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
@@ -160,7 +198,7 @@ public class Duke {
         } catch (IOException var5) {
             System.out.println("File error");
         }
-
+        return taskIndex;
     }
 
     public static void executeException(String input) {
