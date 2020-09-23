@@ -23,6 +23,7 @@ public class Duke {
     public Duke() {
     }
 
+
     public static void main(String[] args) throws commandException, IOException, ClassNotFoundException {
         Scanner in = new Scanner(System.in);
         System.out.println("Hello! I am Groot");
