@@ -99,4 +99,14 @@ public class Ui {
 	public static void noItemMessage() {
 		System.out.println("No items");
 	}
+
+	public static void findMessage() {
+		System.out.println("Here are the matching tasks in your list: ");
+	}
+
+	public static void findTasks(ArrayList<Task> listOfTasks, int j, int index) {
+		System.out.println(j + "." + ((Task) listOfTasks.get(index)).getType() +
+				((Task) listOfTasks.get(index)).getMark() + " " +
+				((Task) listOfTasks.get(index)).toString());
+	}
 }
