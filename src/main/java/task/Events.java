@@ -18,6 +18,6 @@ public class Events extends Task {
 
 	@Override
 	public String toString(){
-		return String.format("%s (at: %s)", this.item, this.eventDate);
+		return String.format("%s (at: %s)", this.description, this.eventDate);
 	}
 }

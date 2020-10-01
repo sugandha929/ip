@@ -4,11 +4,8 @@
 //
 
 import exception.commandException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintStream;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -74,7 +71,8 @@ public class Duke {
                         save();
                     } else {
                         if (userInput.length() > 4 && userInput.contains("todo")) {
-                            ToDos item = new ToDos(userInput.substring(5));
+                            int itemIndex=userInput.indexOf(" ");
+                            ToDos item = new ToDos(userInput.substring(itemIndex));
                             listOfTasks.add(item);
                             save();
                         } else if (userInput.length() > 8 && userInput.contains("deadline")) {
@@ -110,7 +108,8 @@ public class Duke {
 
                         var10000 = System.out;
                         var10001 = ((Task)listOfTasks.get(taskIndex)).getType();
-                        var10000.println("Got it. I've added this task:\n   " + var10001 + ((Task)listOfTasks.get(taskIndex)).getMark() + " " + listOfTasks.get(taskIndex));
+                        var10000.println("Got it. I've added this task:\n   " + var10001 +
+                                ((Task)listOfTasks.get(taskIndex)).getMark() + " " + listOfTasks.get(taskIndex));
                         System.out.println("Now you have " + (taskIndex + 1) + " tasks in the list.");
                         ++taskIndex;
                     }
@@ -141,14 +140,22 @@ public class Duke {
 
     public static void save() throws IOException, FileNotFoundException {
         try {
-            FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
+            BufferedWriter writer = new BufferedWriter(new FileWriter
+                    ("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt"));
             Iterator var1 = listOfTasks.iterator();
 
             while(var1.hasNext()) {
                 Task s = (Task)var1.next();
-                String var10001 = ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getType();
-                writer.write(var10001 + ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getMark() +
-                        listOfTasks.get(listOfTasks.indexOf(s)) + "\n");
+                int i=listOfTasks.indexOf(s);
+                String task=listOfTasks.get(i).toString();
+                int splitIndex=task.indexOf(" ");
+                String taskDesc=task.substring(0, splitIndex);
+                if(task.length()>splitIndex) {
+                    writer.write(((Task)listOfTasks.get(listOfTasks.indexOf(s))).getType() +
+                        ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getMark() +
+                        listOfTasks.get(i) + "\n");
+                }
+
             }
 
             writer.close();
@@ -177,12 +184,14 @@ public class Duke {
                 }
                 else if(line.contains("[D]")){
                     dateIndex = line.indexOf("(");
-                    Deadlines item = new Deadlines(line.substring(6, dateIndex - 1), line.substring(dateIndex + 4));
+                    Deadlines item = new Deadlines(line.substring(6, dateIndex - 1),
+                            line.substring(dateIndex + 5, line.length()-1));
                     listOfTasks.add(item);
                 }
                 else{
                     dateIndex = line.indexOf("(");
-                    Events item = new Events(line.substring(6, dateIndex - 1), line.substring(dateIndex + 4));
+                    Events item = new Events(line.substring(6, dateIndex - 1),
+                            line.substring(dateIndex + 4, line.length()-1));
                     listOfTasks.add(item);
                 }
                 if(line.substring(4, 5).equals("✓")){
@@ -215,3 +224,22 @@ public class Duke {
 
     }
 }
+/* private static void saveTask(List<Task> list) throws IOException{
+        FileWriter fileWriter = new FileWriter(FILENAME);
+        for(Task task : list){
+            if(task instanceof Todo){
+                fileWriter.write("T | " + (task.isDone ? "1" : "0") + " | " +
+                        task.description + "\n");
+            }else if(task instanceof Deadline){
+                String[] deadline =  task.description.split("/by");
+                fileWriter.write("D | " + (task.isDone ? "1" : "0") + " | " +
+                        task.description + " | " + ((Deadline) task).by + "\n");
+            }else if(task instanceof Event) {
+                fileWriter.write("E | " + (task.isDone ? "1" : "0") + " | " +
+                        task.description + " | " + ((Event) task).at + "\n");
+            }
+        }
+        fileWriter.close();
+    }
+
+ */

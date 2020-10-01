@@ -18,7 +18,7 @@ public class Deadlines extends Task {
 
 	@Override
 	public String toString(){
-		return String.format("%s (by: %s)", this.item, this.deadlineDate);
+		return String.format("%s (by: %s)", this.description, this.deadlineDate);
 	}
 
 }
