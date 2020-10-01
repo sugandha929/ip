@@ -64,4 +64,15 @@ public class TaskList {
 		listOfTasks.add(item);
 		Storage.save(listOfTasks);
 	}
+
+	public static void find(ArrayList<Task> listOfTasks, String userInput) {
+		String[] findStrings=userInput.split(" ", 2);
+		Ui.findMessage();
+		for(int index = 0; index < listOfTasks.size(); ++index) {
+			int j = index + 1;
+			if((listOfTasks.get(index)).toString().contains(findStrings[1])) {
+				Ui.findTasks(listOfTasks, j, index);
+			}
+		}
+	}
 }
