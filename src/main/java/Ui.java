@@ -95,4 +95,8 @@ public class Ui {
 	public static void commandException() {
 		System.out.println("☹ OOPS! command invalid.");
 	}
+
+	public static void noItemMessage() {
+		System.out.println("No items");
+	}
 }

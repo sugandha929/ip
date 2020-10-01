@@ -5,7 +5,7 @@
 
 import exception.commandException;
 
-import java.io.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import task.Deadlines;
@@ -25,6 +25,9 @@ public class Duke {
         Ui.greeting();
         int taskIndex=Storage.read("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt",
                 Parser.getListOfTasks());
+        if (taskIndex==0){
+            Ui.noItemMessage();
+        }
         Parser.parse(taskIndex);
     }
 
