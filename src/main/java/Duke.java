@@ -71,9 +71,10 @@ public class Duke {
                         save();
                     } else {
                         if (userInput.length() > 4 && userInput.contains("todo")) {
-                            int itemIndex=userInput.indexOf(" ");
-                            ToDos item = new ToDos(userInput.substring(itemIndex));
+                            String[] todoString=(userInput.split(" ", 2));
+                            ToDos item = new ToDos(todoString[1]);
                             listOfTasks.add(item);
+                            System.out.println(item.getDescription());
                             save();
                         } else if (userInput.length() > 8 && userInput.contains("deadline")) {
                             slashIndex = userInput.indexOf("by");
@@ -119,7 +120,7 @@ public class Duke {
             } catch (commandException var8) {
                 executeException(userInput);
                 break;
-            } catch (IndexOutOfBoundsException var9) {
+            } /*catch (IndexOutOfBoundsException var9) {
                 if (userInput.contains("list")) {
                     System.out.println("☹ OOPS! There are no tasks in your list.");
                 } else if (userInput.contains("deadline")) {
@@ -130,7 +131,7 @@ public class Duke {
                     System.out.println("☹ OOPS! Task number invalid.");
                 }
                 break;
-            } catch (IOException var10) {
+            }*/ catch (IOException var10) {
                 System.out.println("File error");
                 break;
             }
@@ -140,25 +141,18 @@ public class Duke {
 
     public static void save() throws IOException, FileNotFoundException {
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter
-                    ("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt"));
+            FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
             Iterator var1 = listOfTasks.iterator();
 
             while(var1.hasNext()) {
                 Task s = (Task)var1.next();
-                int i=listOfTasks.indexOf(s);
-                String task=listOfTasks.get(i).toString();
-                int splitIndex=task.indexOf(" ");
-                String taskDesc=task.substring(0, splitIndex);
-                if(task.length()>splitIndex) {
-                    writer.write(((Task)listOfTasks.get(listOfTasks.indexOf(s))).getType() +
-                        ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getMark() +
-                        listOfTasks.get(i) + "\n");
-                }
-
+                String var10001 = ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getType();
+                writer.write(var10001 + ((Task)listOfTasks.get(listOfTasks.indexOf(s))).getMark() +
+                        listOfTasks.get(listOfTasks.indexOf(s)) + "\n");
             }
 
             writer.close();
+
         } catch (FileNotFoundException var4) {
             System.out.println("There was no existing file, so new file created");
             FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");

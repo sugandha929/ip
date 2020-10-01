@@ -1,2 +1,5 @@
-[T][✗] hi
-[D][✗]gg (by: 4)
+[T][✗]hi
+[D][✗]hi (by: 3)
+[D][✗]hi hi hi (by: 3)
+[E][✗]hello (at: 3)
+[E][✗]hh (at: 2)
