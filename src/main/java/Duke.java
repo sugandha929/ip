@@ -23,7 +23,7 @@ public class Duke {
 
     public static void main(String[] args) throws commandException, IOException, ClassNotFoundException {
         Ui.greeting();
-        int taskIndex=Storage.read("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt",
+        int taskIndex=Storage.read("./output.txt",
                 Parser.getListOfTasks());
         if (taskIndex==0){
             Ui.noItemMessage();
