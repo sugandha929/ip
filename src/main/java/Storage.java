@@ -24,7 +24,7 @@ public class Storage {
 	 */
 	public static void save(ArrayList<Task> listOfTasks) throws IOException, FileNotFoundException {
 		try {
-			FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
+			FileWriter writer = new FileWriter("./output.txt");
 			Iterator var1 = listOfTasks.iterator();
 
 			while(var1.hasNext()) {
@@ -38,7 +38,7 @@ public class Storage {
 
 		} catch (FileNotFoundException var4) {
 			Ui.noFileException();
-			FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
+			FileWriter writer = new FileWriter("./output.txt");
 			writer.close();
 		} catch (IOException var5) {
 			Ui.fileIoException();
@@ -88,7 +88,7 @@ public class Storage {
 
 		} catch (FileNotFoundException var4) {
 			Ui.noFileException();
-			FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
+			FileWriter writer = new FileWriter("./output.txt");
 			writer.close();
 		} catch (IOException var5) {
 			Ui.fileIoException();
