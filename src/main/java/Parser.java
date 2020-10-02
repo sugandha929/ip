@@ -26,8 +26,6 @@ public class Parser {
 						throw new commandException();
 					}
 					Ui.listMessage(listOfTasks);
-				} else if (userInput.length() > 4 && userInput.contains("find")) {
-					TaskList.find(listOfTasks, userInput);
 				} else{
 
 					if (userInput.length() > 6 && userInput.contains("delete")) {
