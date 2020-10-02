@@ -8,14 +8,21 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 
 import java.util.Scanner;
+
+/**
+ * Ui class has all the functions related to the user interface
+ *
+ */
 public class Ui {
 	public static final Scanner input = new Scanner(System.in);
+
 
 	public static void greeting() {
 		System.out.println("Hello! I am Groot");
 		System.out.println("What can I do for you?");
 		System.out.println("Please find your previous list items below: ");
 	}
+
 
 	public static void byeMessage() {
 		System.out.println("Bye. Hope to see you again soon!");
