@@ -16,13 +16,11 @@ import java.util.Scanner;
 public class Ui {
 	public static final Scanner input = new Scanner(System.in);
 
-
 	public static void greeting() {
 		System.out.println("Hello! I am Groot");
 		System.out.println("What can I do for you?");
 		System.out.println("Please find your previous list items below: ");
 	}
-
 
 	public static void byeMessage() {
 		System.out.println("Bye. Hope to see you again soon!");
@@ -38,7 +36,6 @@ public class Ui {
 		}
 	}
 
-
 	public static void deleteMessage(ArrayList<Task> listOfTasks, int slashIndex) {
 		System.out.println("Noted. I've removed this task:\n   " + ((Task)listOfTasks.get(slashIndex)).getType() +
 				((Task)listOfTasks.get(slashIndex)).getMark() + " " + listOfTasks.get(slashIndex));
@@ -52,12 +49,11 @@ public class Ui {
 				((Task)listOfTasks.get(slashIndex)).getType() + "[✓] " + listOfTasks.get(slashIndex));
 	}
 
-	public static void taskMessage(ArrayList<Task> listOfTasks, int taskIndex) {
+	public static void taskMessage(ArrayList<Task> listOfTasks) {
 		System.out.println("Got it. I've added this task:\n   " +
-				((Task)listOfTasks.get(taskIndex)).getType()+
-				((Task)listOfTasks.get(taskIndex)).getMark() + " " + listOfTasks.get(taskIndex));
-		System.out.println("Now you have " + (taskIndex + 1) + " tasks in the list.");
-		++taskIndex;
+				((Task)listOfTasks.get(listOfTasks.size()-1)).getType()+
+				((Task)listOfTasks.get(listOfTasks.size()-1)).getMark() + " " + listOfTasks.get(listOfTasks.size()-1));
+		System.out.println("Now you have " + (listOfTasks.size()) + " tasks in the list.");
 	}
 
 	public static void listException() {
@@ -71,6 +67,7 @@ public class Ui {
 	public static void eventDateException() {
 		System.out.println("☹ OOPS! The date of an event cannot be empty.");
 	}
+
 	public static void taskNoException() {
 		System.out.println("☹ OOPS! Task number invalid.");
 	}

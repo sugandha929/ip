@@ -16,10 +16,9 @@ public class Parser {
 
 	/**
 	 * Uses the user input to call methods from classes UI and TaskList
-	 * @param taskIndex the index at which existing list ends
 	 * @throws IOException
 	 */
-	public static void parse(int taskIndex) throws IOException {
+	public static void parse() throws IOException {
 		Scanner in = new Scanner(System.in);
 		String userInput = in.nextLine();
 		while(true) {
@@ -51,7 +50,7 @@ public class Parser {
 						} else {
 							TaskList.event(listOfTasks, userInput);
 						}
-						Ui.taskMessage(listOfTasks, taskIndex);
+						Ui.taskMessage(listOfTasks);
 					}
 				}
 				userInput = in.nextLine();

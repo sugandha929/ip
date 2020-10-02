@@ -40,7 +40,7 @@ public class Duke {
         if (taskIndex==0){
             Ui.noItemMessage();
         }
-        Parser.parse(taskIndex);
+        Parser.parse();
     }
 
     public static void executeException(String userInput) {
