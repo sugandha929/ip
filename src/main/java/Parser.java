@@ -5,11 +5,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Parser class translates the user input into commands
+ */
 public class Parser {
 	private static ArrayList<Task> listOfTasks = new ArrayList();
 	public static ArrayList<Task> getListOfTasks(){
 		return listOfTasks;
 	}
+
+	/**
+	 * Uses the user input to call methods from classes UI and TaskList
+	 * @param taskIndex the index at which existing list ends
+	 * @throws IOException
+	 */
 	public static void parse(int taskIndex) throws IOException {
 		Scanner in = new Scanner(System.in);
 		String userInput = in.nextLine();

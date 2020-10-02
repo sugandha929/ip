@@ -13,6 +13,9 @@ import task.Events;
 import task.Task;
 import task.ToDos;
 
+/**
+ * The main class for running the application
+ */
 public class Duke {
 
 
@@ -20,6 +23,15 @@ public class Duke {
 
     }
 
+    /**
+     * greets the user
+     * reads existing file and saves it into a list
+     * returns number of tasks in the previous list
+     * @param args
+     * @throws commandException
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
 
     public static void main(String[] args) throws commandException, IOException, ClassNotFoundException {
         Ui.greeting();

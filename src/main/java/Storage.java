@@ -11,7 +11,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Storage class creates and saves the list as a file
+ * It also reads and saves data into a list from the file
+ */
 public class Storage {
+	/**
+	 * Creates a file and saves the task list
+	 * @param listOfTasks
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
 	public static void save(ArrayList<Task> listOfTasks) throws IOException, FileNotFoundException {
 		try {
 			FileWriter writer = new FileWriter("/Users/nikki/Documents/GitHub/ip/src/main/java/output.txt");
@@ -35,6 +45,15 @@ public class Storage {
 		}
 
 	}
+
+	/**
+	 * Reads and saves the data into list of Tasks
+	 * @param fileName the path of the file to read from
+	 * @param listOfTasks
+	 * @return
+	 * @throws IOException
+	 * @throws FileNotFoundException
+	 */
 	public static int read(String fileName, ArrayList<Task> listOfTasks) throws IOException, FileNotFoundException {
 		int taskIndex=0;
 		try {
