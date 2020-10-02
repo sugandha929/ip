@@ -32,6 +32,8 @@ public class Parser {
 						TaskList.delete(listOfTasks, userInput);
 					} else if (userInput.length() > 4 && userInput.contains("done")) {
 						TaskList.done(listOfTasks, userInput);
+					} else if (userInput.length() > 4 && userInput.contains("find")) {
+						TaskList.find(listOfTasks, userInput);
 					} else {
 						if (userInput.length() > 4 && userInput.contains("todo")) {
 							TaskList.todo(listOfTasks, userInput);
