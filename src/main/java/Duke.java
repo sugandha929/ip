@@ -1,13 +1,9 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 import exception.commandException;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 import task.Deadlines;
 import task.Events;
 import task.Task;
@@ -27,6 +23,7 @@ public class Duke {
      * greets the user
      * reads existing file and saves it into a list
      * returns number of tasks in the previous list
+     *
      * @param args
      * @throws commandException
      * @throws IOException
@@ -35,16 +32,16 @@ public class Duke {
 
     public static void main(String[] args) throws commandException, IOException, ClassNotFoundException {
         Ui.greeting();
-        int taskIndex=Storage.read("./output.txt",
+        int taskIndex = Storage.read("./output.txt",
                 Parser.getListOfTasks());
-        if (taskIndex==0){
+        if (taskIndex == 0) {
             Ui.noItemMessage();
         }
         Parser.parse();
     }
 
     public static void executeException(String userInput) {
-        if (userInput.equals("todo")) {
+        if (userInput.equals("todo") || userInput.substring(5).trim().isEmpty()) {
             Ui.todoException();
         } else if (userInput.contains("deadline")) {
             Ui.deadlineException();

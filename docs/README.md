@@ -91,19 +91,19 @@ Expected outcome:
     `2.[D][✗] finish assignment (by: 21 oct)`   
    ` 3.[E][✗] project meeting (at: 2 pm)` 
     
-   ### 3.4 Mark tasks as done: `done`
+### 3.4 Mark tasks as done: `done`
    This function marks the task number that you specify as done by showing a tick in front of it.   
    
    Example of usage:  
    
-   `list`  
+   `done 1`  
  
  Expected outcome:  
  
  `Nice! I've marked this task as done:`   
  `[T][✓] clean my room` 
  
-  ### 3.5 Delete tasks: `delete`
+### 3.5 Delete tasks: `delete`
   This function deletes the task number that you specify 
   
   Example of usage:  
@@ -115,7 +115,7 @@ Expected outcome:
    `Noted. I've removed this task:`   
    `[T][✓] clean my room`   
    `Now you have 2 tasks in the list.`
-  ### 3.6 Find tasks: `find`
+### 3.6 Find tasks: `find`
   This function finds the task containing the words or letters that the user specifies 
     
   Example of usage:  
@@ -126,7 +126,7 @@ Expected outcome:
      
   `Here are the matching tasks in your list: `     
   `1.[D][✗] finish assignment (by: 21 oct)` 
-  ### 3.7 Quit application: `bye`
+### 3.7 Quit application: `bye`
   This function will quit your application.  
   
   Example of usage:  
@@ -137,10 +137,10 @@ Expected outcome:
        
   `Bye. Hope to see you again soon!` 
   
-  ### 3.8 Save data
+### 3.8 Save data
   This application automatically saves your tasks in a file, whenever you make changes in your list.
   
-  ### 3.9 Error detection 
+### 3.9 Error detection 
   This application will detect any invalid commands, missing descriptions or dates, invalid task numbers and any other errors, and will print messages such as:  
   
   `☹ OOPS! Task number invalid.`   

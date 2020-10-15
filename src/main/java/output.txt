@@ -1,6 +1,0 @@
-[T][✗]hi
-[T][✗]clean my room
-[T][✓]he
-[D][✗]hh (by: 3)
-[D][✗]finish assignment (by: 21 oct)
-[E][✗]project meeting (at:  2 pm)
