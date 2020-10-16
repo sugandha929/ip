@@ -12,14 +12,14 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 /**
- * Storage class creates and saves the list as a file
- * It also reads and saves data into a list from the file
+ * Storage class creates and saves the list as a file.
+ * It also reads and saves data into a list from the file.
  */
 public class Storage {
     /**
-     * Creates a file and saves the task list
+     * Creates a file and saves the task list.
      *
-     * @param listOfTasks
+     * @param listOfTasks the complete list of tasks added by the user.
      * @throws IOException
      * @throws FileNotFoundException
      */
@@ -31,8 +31,8 @@ public class Storage {
             while (var1.hasNext()) {
                 Task s = (Task) var1.next();
                 String var10001 = ((Task) listOfTasks.get(listOfTasks.indexOf(s))).getType();
-                writer.write(var10001 + ((Task) listOfTasks.get(listOfTasks.indexOf(s))).getMark() +
-                        listOfTasks.get(listOfTasks.indexOf(s)) + "\n");
+                writer.write(var10001 + ((Task) listOfTasks.get(listOfTasks.indexOf(s))).getMark()
+                        + listOfTasks.get(listOfTasks.indexOf(s)) + "\n");
             }
 
             writer.close();
@@ -48,11 +48,11 @@ public class Storage {
     }
 
     /**
-     * Reads and saves the data into list of Tasks
+     * Reads and saves the data into list of Tasks.
      *
-     * @param fileName    the path of the file to read from
-     * @param listOfTasks
-     * @return
+     * @param fileName the path of the file to read from.
+     * @param listOfTasks the complete list of tasks added by the user.
+     * @return the number of tasks already present in the text file.
      * @throws IOException
      * @throws FileNotFoundException
      */
@@ -80,7 +80,7 @@ public class Storage {
                     listOfTasks.add(item);
                 }
                 if (line.substring(4, 5).equals("✓")) {
-                    listOfTasks.get(taskIndex).Done();
+                    listOfTasks.get(taskIndex).done();
                 }
                 System.out.println(line);
                 taskIndex++;

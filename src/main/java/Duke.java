@@ -1,16 +1,9 @@
-import exception.commandException;
+import exception.CommandException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import task.Deadlines;
-import task.Events;
-import task.Task;
-import task.ToDos;
 
 /**
- * The main class for running the application
+ * The main class for running the application.
  */
 public class Duke {
 
@@ -20,17 +13,17 @@ public class Duke {
     }
 
     /**
-     * greets the user
+     * greets the user.
      * reads existing file and saves it into a list
      * returns number of tasks in the previous list
      *
-     * @param args
-     * @throws commandException
+     * @param args the input from command line
+     * @throws CommandException
      * @throws IOException
      * @throws ClassNotFoundException
      */
 
-    public static void main(String[] args) throws commandException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws CommandException, IOException, ClassNotFoundException {
         Ui.greeting();
         int taskIndex = Storage.read("./output.txt",
                 Parser.getListOfTasks());

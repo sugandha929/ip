@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Ui class has all the functions related to the user interface
+ * Ui class has all the functions related to the user interface.
  */
 public class Ui {
     public static final Scanner input = new Scanner(System.in);
@@ -26,29 +26,30 @@ public class Ui {
         System.out.println("Here are the tasks in your list: ");
         for (int index = 0; index < listOfTasks.size(); ++index) {
             int j = index + 1;
-            System.out.println(j + "." + ((Task) listOfTasks.get(index)).getType() +
-                    ((Task) listOfTasks.get(index)).getMark() + " " +
-                    ((Task) listOfTasks.get(index)).toString());
+            System.out.println(j + "." + ((Task) listOfTasks.get(index)).getType()
+                    + ((Task) listOfTasks.get(index)).getMark() + " "
+                    + ((Task) listOfTasks.get(index)).toString());
         }
     }
 
     public static void deleteMessage(ArrayList<Task> listOfTasks, int slashIndex) {
-        System.out.println("Noted. I've removed this task:\n   " + ((Task) listOfTasks.get(slashIndex)).getType() +
-                ((Task) listOfTasks.get(slashIndex)).getMark() + " " + listOfTasks.get(slashIndex));
+        System.out.println("Noted. I've removed this task:\n   " + ((Task) listOfTasks.get(slashIndex)).getType()
+                + ((Task) listOfTasks.get(slashIndex)).getMark() + " " + listOfTasks.get(slashIndex));
         listOfTasks.remove(slashIndex);
         System.out.println("Now you have " + listOfTasks.size() + " tasks in the list.");
 
     }
 
     public static void doneMessage(ArrayList<Task> listOfTasks, int slashIndex) {
-        System.out.println("Nice! I've marked this task as done:\n   " +
-                ((Task) listOfTasks.get(slashIndex)).getType() + "[✓] " + listOfTasks.get(slashIndex));
+        System.out.println("Nice! I've marked this task as done:\n   "
+                + ((Task) listOfTasks.get(slashIndex)).getType() + "[✓] " + listOfTasks.get(slashIndex));
     }
 
     public static void taskMessage(ArrayList<Task> listOfTasks) {
-        System.out.println("Got it. I've added this task:\n   " +
-                ((Task) listOfTasks.get(listOfTasks.size() - 1)).getType() +
-                ((Task) listOfTasks.get(listOfTasks.size() - 1)).getMark() + " " + listOfTasks.get(listOfTasks.size() - 1));
+        System.out.println("Got it. I've added this task:\n   "
+                + ((Task) listOfTasks.get(listOfTasks.size() - 1)).getType()
+                + ((Task) listOfTasks.get(listOfTasks.size() - 1)).getMark() + " "
+                + listOfTasks.get(listOfTasks.size() - 1));
         System.out.println("Now you have " + (listOfTasks.size()) + " tasks in the list.");
     }
 
@@ -97,12 +98,12 @@ public class Ui {
     }
 
     public static void findTasks(ArrayList<Task> listOfTasks, int j, int index) {
-        System.out.println(j + "." + ((Task) listOfTasks.get(index)).getType() +
-                ((Task) listOfTasks.get(index)).getMark() + " " +
-                ((Task) listOfTasks.get(index)).toString());
+        System.out.println(j + "." + ((Task) listOfTasks.get(index)).getType()
+                + ((Task) listOfTasks.get(index)).getMark() + " "
+                + ((Task) listOfTasks.get(index)).toString());
     }
 
-    public static void NumberFormatException() {
+    public static void numberFormatException() {
         System.out.println("☹ OOPS! no spaces found or number invalid.");
     }
 }

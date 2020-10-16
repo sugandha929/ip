@@ -1,4 +1,4 @@
 package exception;
 
-public class commandException extends Exception {
+public class CommandException extends Exception {
 }

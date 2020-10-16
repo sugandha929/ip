@@ -1,4 +1,4 @@
-import exception.commandException;
+import exception.CommandException;
 import task.Deadlines;
 import task.Events;
 import task.Task;
@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * TaskList class implements each user input, as translated from Parser class
+ * TaskList class implements each user input, as translated from Parser class.
  */
 public class TaskList {
     /**
-     * deletes the task number specified
+     * deletes the task number specified.
      *
-     * @param listOfTasks
-     * @param userInput
+     * @param listOfTasks the complete list of tasks added by the user.
+     * @param userInput the string input by the user in the command line.
      * @throws IOException
      */
     public static void delete(ArrayList<Task> listOfTasks, String userInput) throws IOException {
@@ -25,24 +25,24 @@ public class TaskList {
     }
 
     /**
-     * marks the task number specified by user as done
+     * marks the task number specified by user as done.
      *
-     * @param listOfTasks
-     * @param userInput
+     * @param listOfTasks the complete list of tasks added by the user.
+     * @param userInput the string input by the user in the command line.
      * @throws IOException
      */
     public static void done(ArrayList<Task> listOfTasks, String userInput) throws IOException {
         int slashIndex = Integer.parseInt(userInput.substring(5)) - 1;
-        (listOfTasks.get(slashIndex)).Done();
+        (listOfTasks.get(slashIndex)).done();
         Ui.doneMessage(listOfTasks, slashIndex);
         Storage.save(listOfTasks);
     }
 
     /**
-     * adds a "todo" task in the list of tasks
+     * adds a "todo" task in the list of tasks.
      *
-     * @param listOfTasks
-     * @param userInput
+     * @param listOfTasks the complete list of tasks added by the user.
+     * @param userInput the string input by the user in the command line.
      * @throws IOException
      */
     public static void todo(ArrayList<Task> listOfTasks, String userInput) throws IOException {
@@ -53,10 +53,10 @@ public class TaskList {
     }
 
     /**
-     * adds a "deadline" task in the list of tasks
+     * adds a "deadline" task in the list of tasks.
      *
-     * @param listOfTasks
-     * @param userInput
+     * @param listOfTasks the complete list of tasks added by the user.
+     * @param userInput the string input by the user in the command line.
      * @throws IOException
      */
     public static void deadline(ArrayList<Task> listOfTasks, String userInput) throws IOException {
@@ -74,16 +74,16 @@ public class TaskList {
     }
 
     /**
-     * adds an "event" task in the list of tasks
+     * adds an "event" task in the list of tasks.
      *
-     * @param listOfTasks
-     * @param userInput
-     * @throws commandException
+     * @param listOfTasks the complete list of tasks added by the user.
+     * @param userInput the string input by the user in the command line.
+     * @throws CommandException
      * @throws IOException
      */
-    public static void event(ArrayList<Task> listOfTasks, String userInput) throws commandException, IOException {
+    public static void event(ArrayList<Task> listOfTasks, String userInput) throws CommandException, IOException {
         if (userInput.length() <= 5 || !userInput.contains("event")) {
-            throw new commandException();
+            throw new CommandException();
         }
         int slashIndex = userInput.indexOf("at");
         int a;

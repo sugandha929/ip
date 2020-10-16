@@ -1,4 +1,4 @@
-import exception.commandException;
+import exception.CommandException;
 import task.Task;
 
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Parser class translates the user input into commands
+ * Parser class translates the user input into commands.
  */
 public class Parser {
     private static ArrayList<Task> listOfTasks = new ArrayList();
@@ -16,7 +16,7 @@ public class Parser {
     }
 
     /**
-     * Uses the user input to call methods from classes UI and TaskList
+     * Uses the user input to call methods from classes UI and TaskList.
      *
      * @throws IOException
      */
@@ -33,11 +33,10 @@ public class Parser {
                 int slashIndex;
                 if (userInput.equalsIgnoreCase("list")) {
                     if (!userInput.equals("list")) {
-                        throw new commandException();
+                        throw new CommandException();
                     }
                     Ui.listMessage(listOfTasks);
                 } else {
-
                     if (userInput.length() > 6 && userInput.contains("delete")) {
                         TaskList.delete(listOfTasks, userInput);
                     } else if (userInput.length() > 4 && userInput.contains("done")) {
@@ -45,8 +44,8 @@ public class Parser {
                     } else if (userInput.length() > 4 && userInput.contains("find")) {
                         TaskList.find(listOfTasks, userInput);
                     } else {
-                        if (userInput.length() > 4 && userInput.contains("todo") &&
-                                !userInput.substring(5).trim().isEmpty()) {
+                        if (userInput.length() > 4 && userInput.contains("todo")
+                                && !userInput.substring(5).trim().isEmpty()) {
                             TaskList.todo(listOfTasks, userInput);
                         } else if (userInput.length() > 8 && userInput.contains("deadline")) {
                             TaskList.deadline(listOfTasks, userInput);
@@ -57,7 +56,7 @@ public class Parser {
                     }
                 }
                 userInput = in.nextLine();
-            } catch (commandException var8) {
+            } catch (CommandException var8) {
                 Duke.executeException(userInput);
                 break;
             } catch (IndexOutOfBoundsException var9) {
@@ -77,7 +76,7 @@ public class Parser {
                 Ui.fileIoException();
                 break;
             } catch (NumberFormatException var10) {
-                Ui.NumberFormatException();
+                Ui.numberFormatException();
                 break;
             }
         }
