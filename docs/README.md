@@ -47,14 +47,12 @@ Expected outcome:
 #### 3.22 Deadline:
  To add a deadline task type:
  
- deadline "description of your task" by "your date or time"  
- OR  
  deadline "description of your task" /by "your date or time"
  (without the double qoutes)
  
  Example of usage: 
  
- `deadline finish assignment by 21 oct`
+ `deadline finish assignment /by 21 oct`
  
  Expected outcome:
  
@@ -64,14 +62,12 @@ Expected outcome:
 #### 3.23 Event:
    To add an event task type:
    
-   event "description of your task" at "your date or time"  
-   OR  
-   deadline "description of your task" /at "your date or time"
+   event "description of your task" /at "your date or time"
    (without the double qoutes)
    
    Example of usage: 
    
-   `event project meeting at 2 pm`
+   `event project meeting /at 2 pm`
    
    Expected outcome:
    
@@ -152,7 +148,7 @@ Expected outcome:
   After printing an error message the application keeps running, so you can enter a new command.
   
 ## 4. Notes 
-- All commands are case-sensitive
-- Make sure to follow the format given for different commands
-- Make sure there are no leading spaces in single word commands
+- All commands are case-sensitive.
+- Make sure to follow the exact format given for different commands.
+- Make sure there are no leading spaces in single word commands.
     

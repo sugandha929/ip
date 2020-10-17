@@ -60,14 +60,8 @@ public class TaskList {
      * @throws IOException exception if there is en error with the file.
      */
     public static void addDeadline(ArrayList<Task> listOfTasks, String userInput) throws IOException {
-        int slashIndex = userInput.indexOf("by");
-        int a;
-        if (userInput.contains("/")) {
-            a = 2;
-        } else {
-            a = 1;
-        }
-        Deadline item = new Deadline(userInput.substring(9, slashIndex - a),
+        int slashIndex = userInput.indexOf("/");
+        Deadline item = new Deadline(userInput.substring(9, slashIndex - 2),
                 userInput.substring(slashIndex + 3));
         listOfTasks.add(item);
         Storage.save(listOfTasks);
@@ -85,14 +79,8 @@ public class TaskList {
         if (userInput.length() <= 5 || !userInput.contains("event")) {
             throw new CommandException();
         }
-        int slashIndex = userInput.indexOf("at");
-        int a;
-        if (userInput.contains("/")) {
-            a = 2;
-        } else {
-            a = 1;
-        }
-        Event item = new Event(userInput.substring(6, slashIndex - a),
+        int slashIndex = userInput.indexOf("/");
+        Event item = new Event(userInput.substring(6, slashIndex - 2),
                 userInput.substring(slashIndex + 3));
         listOfTasks.add(item);
         Storage.save(listOfTasks);

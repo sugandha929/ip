@@ -45,10 +45,16 @@ public class Parser {
                             if (userInput.length() > 4 && userInput.contains("todo")
                                     && !userInput.substring(5).trim().isEmpty()) {
                                 TaskList.addTodo(listOfTasks, userInput);
-                            } else if (userInput.length() > 8 && userInput.contains("deadline")) {
+                            } else if (userInput.length() > 8 && userInput.contains("deadline")
+                                    && !userInput.substring(userInput.indexOf("/by") + 3).trim().isEmpty()
+                                    && !userInput.substring(9, userInput.indexOf("/by")).trim().isEmpty()) {
                                 TaskList.addDeadline(listOfTasks, userInput);
-                            } else {
+                            } else if (userInput.length() > 5 && userInput.contains("event")
+                                    && !userInput.substring(userInput.indexOf("at") + 2).trim().isEmpty()
+                                    && !userInput.substring(6, userInput.indexOf("/at")).trim().isEmpty()) {
                                 TaskList.addEvent(listOfTasks, userInput);
+                            } else {
+                                throw new CommandException();
                             }
                             Ui.taskMessage(listOfTasks);
                         }
