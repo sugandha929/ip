@@ -1,7 +1,7 @@
-import task.Deadlines;
-import task.Events;
+import task.Deadline;
+import task.Event;
 import task.Task;
-import task.ToDos;
+import task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,22 +26,22 @@ public class Storage {
     public static void save(ArrayList<Task> listOfTasks) throws IOException, FileNotFoundException {
         try {
             FileWriter writer = new FileWriter("./output.txt");
-            Iterator var1 = listOfTasks.iterator();
+            Iterator iterator = listOfTasks.iterator();
 
-            while (var1.hasNext()) {
-                Task s = (Task) var1.next();
-                String var10001 = ((Task) listOfTasks.get(listOfTasks.indexOf(s))).getType();
-                writer.write(var10001 + ((Task) listOfTasks.get(listOfTasks.indexOf(s))).getMark()
+            while (iterator.hasNext()) {
+                Task s = (Task) iterator.next();
+                writer.write(((Task) listOfTasks.get(listOfTasks.indexOf(s))).getType()
+                        + ((Task) listOfTasks.get(listOfTasks.indexOf(s))).getMark()
                         + listOfTasks.get(listOfTasks.indexOf(s)) + "\n");
             }
 
             writer.close();
 
-        } catch (FileNotFoundException var4) {
+        } catch (FileNotFoundException e) {
             Ui.noFileException();
             FileWriter writer = new FileWriter("./output.txt");
             writer.close();
-        } catch (IOException var5) {
+        } catch (IOException e) {
             Ui.fileIoException();
         }
 
@@ -66,16 +66,16 @@ public class Storage {
             while (readfile.hasNext()) {
                 line = readfile.nextLine();
                 if (line.contains("[T]")) {
-                    ToDos item = new ToDos(line.substring(6));
+                    ToDo item = new ToDo(line.substring(6));
                     listOfTasks.add(item);
                 } else if (line.contains("[D]")) {
                     dateIndex = line.indexOf("(");
-                    Deadlines item = new Deadlines(line.substring(6, dateIndex - 1),
+                    Deadline item = new Deadline(line.substring(6, dateIndex - 1),
                             line.substring(dateIndex + 5, line.length() - 1));
                     listOfTasks.add(item);
                 } else {
                     dateIndex = line.indexOf("(");
-                    Events item = new Events(line.substring(6, dateIndex - 1),
+                    Event item = new Event(line.substring(6, dateIndex - 1),
                             line.substring(dateIndex + 5, line.length() - 1));
                     listOfTasks.add(item);
                 }
@@ -86,11 +86,11 @@ public class Storage {
                 taskIndex++;
             }
 
-        } catch (FileNotFoundException var4) {
+        } catch (FileNotFoundException e) {
             Ui.noFileException();
             FileWriter writer = new FileWriter("./output.txt");
             writer.close();
-        } catch (IOException var5) {
+        } catch (IOException e) {
             Ui.fileIoException();
         }
         return taskIndex;

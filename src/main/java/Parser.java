@@ -46,20 +46,20 @@ public class Parser {
                     } else {
                         if (userInput.length() > 4 && userInput.contains("todo")
                                 && !userInput.substring(5).trim().isEmpty()) {
-                            TaskList.todo(listOfTasks, userInput);
+                            TaskList.addTodo(listOfTasks, userInput);
                         } else if (userInput.length() > 8 && userInput.contains("deadline")) {
-                            TaskList.deadline(listOfTasks, userInput);
+                            TaskList.addDeadline(listOfTasks, userInput);
                         } else {
-                            TaskList.event(listOfTasks, userInput);
+                            TaskList.addEvent(listOfTasks, userInput);
                         }
                         Ui.taskMessage(listOfTasks);
                     }
                 }
                 userInput = in.nextLine();
-            } catch (CommandException var8) {
+            } catch (CommandException e) {
                 Duke.executeException(userInput);
                 break;
-            } catch (IndexOutOfBoundsException var9) {
+            } catch (IndexOutOfBoundsException e) {
                 if (userInput.contains("list")) {
                     Ui.listException();
                 } else if (userInput.contains("deadline")) {
@@ -72,10 +72,10 @@ public class Parser {
                     Ui.indexException();
                 }
                 break;
-            } catch (IOException var10) {
+            } catch (IOException e) {
                 Ui.fileIoException();
                 break;
-            } catch (NumberFormatException var10) {
+            } catch (NumberFormatException e) {
                 Ui.numberFormatException();
                 break;
             }

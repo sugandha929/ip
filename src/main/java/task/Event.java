@@ -1,9 +1,9 @@
 package task;
 
-public class Events extends Task {
+public class Event extends Task {
     private String eventDate;
 
-    public Events(String item, String eventDate) {
+    public Event(String item, String eventDate) {
         super(item);
         this.eventDate = eventDate;
     }

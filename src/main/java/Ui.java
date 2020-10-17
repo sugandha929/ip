@@ -1,7 +1,5 @@
 import task.Task;
-import task.ToDos;
 
-import java.io.PrintStream;
 import java.util.ArrayList;
 
 import java.util.Scanner;

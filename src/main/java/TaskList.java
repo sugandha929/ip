@@ -1,8 +1,8 @@
 import exception.CommandException;
-import task.Deadlines;
-import task.Events;
+import task.Deadline;
+import task.Event;
 import task.Task;
-import task.ToDos;
+import task.ToDo;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,9 +45,9 @@ public class TaskList {
      * @param userInput the string input by the user in the command line.
      * @throws IOException
      */
-    public static void todo(ArrayList<Task> listOfTasks, String userInput) throws IOException {
+    public static void addTodo(ArrayList<Task> listOfTasks, String userInput) throws IOException {
         String[] todoString = (userInput.split(" ", 2));
-        ToDos item = new ToDos(todoString[1]);
+        ToDo item = new ToDo(todoString[1]);
         listOfTasks.add(item);
         Storage.save(listOfTasks);
     }
@@ -59,7 +59,7 @@ public class TaskList {
      * @param userInput the string input by the user in the command line.
      * @throws IOException
      */
-    public static void deadline(ArrayList<Task> listOfTasks, String userInput) throws IOException {
+    public static void addDeadline(ArrayList<Task> listOfTasks, String userInput) throws IOException {
         int slashIndex = userInput.indexOf("by");
         int a;
         if (userInput.contains("/")) {
@@ -67,7 +67,7 @@ public class TaskList {
         } else {
             a = 1;
         }
-        Deadlines item = new Deadlines(userInput.substring(9, slashIndex - a),
+        Deadline item = new Deadline(userInput.substring(9, slashIndex - a),
                 userInput.substring(slashIndex + 3));
         listOfTasks.add(item);
         Storage.save(listOfTasks);
@@ -81,7 +81,7 @@ public class TaskList {
      * @throws CommandException
      * @throws IOException
      */
-    public static void event(ArrayList<Task> listOfTasks, String userInput) throws CommandException, IOException {
+    public static void addEvent(ArrayList<Task> listOfTasks, String userInput) throws CommandException, IOException {
         if (userInput.length() <= 5 || !userInput.contains("event")) {
             throw new CommandException();
         }
@@ -92,7 +92,7 @@ public class TaskList {
         } else {
             a = 1;
         }
-        Events item = new Events(userInput.substring(6, slashIndex - a),
+        Event item = new Event(userInput.substring(6, slashIndex - a),
                 userInput.substring(slashIndex + 3));
         listOfTasks.add(item);
         Storage.save(listOfTasks);
