@@ -149,7 +149,7 @@ Expected outcome:
   
   `☹ OOPS! The date of an event cannot be empty.`
   
-  After printing an error message the application will quit on its own.
+  After printing an error message the application keeps running, so you can enter a new command.
   
 ## 4. Notes 
 - All commands are case-sensitive
