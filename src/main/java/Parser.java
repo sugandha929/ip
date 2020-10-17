@@ -21,62 +21,65 @@ public class Parser {
      * @throws IOException
      */
     public static void parse() throws IOException, NumberFormatException {
-        Scanner in = new Scanner(System.in);
-        String userInput = in.nextLine();
         while (true) {
-            try {
-                if (userInput.equalsIgnoreCase("bye")) {
-                    Ui.byeMessage();
+            Scanner in = new Scanner(System.in);
+            String userInput = in.nextLine();
+            while (!(userInput.equals("bye"))) {
+                try {
+
+
+                    int slashIndex;
+                    if (userInput.equalsIgnoreCase("list")) {
+                        if (!userInput.equals("list")) {
+                            throw new CommandException();
+                        }
+                        Ui.listMessage(listOfTasks);
+                    } else {
+                        if (userInput.length() > 6 && userInput.contains("delete")) {
+                            TaskList.delete(listOfTasks, userInput);
+                        } else if (userInput.length() > 4 && userInput.contains("done")) {
+                            TaskList.done(listOfTasks, userInput);
+                        } else if (userInput.length() > 4 && userInput.contains("find")) {
+                            TaskList.find(listOfTasks, userInput);
+                        } else {
+                            if (userInput.length() > 4 && userInput.contains("todo")
+                                    && !userInput.substring(5).trim().isEmpty()) {
+                                TaskList.addTodo(listOfTasks, userInput);
+                            } else if (userInput.length() > 8 && userInput.contains("deadline")) {
+                                TaskList.addDeadline(listOfTasks, userInput);
+                            } else {
+                                TaskList.addEvent(listOfTasks, userInput);
+                            }
+                            Ui.taskMessage(listOfTasks);
+                        }
+                    }
+                    userInput = in.nextLine();
+                } catch (CommandException e) {
+                    Duke.executeException(userInput);
+                    break;
+                } catch (IndexOutOfBoundsException e) {
+                    if (userInput.contains("list")) {
+                        Ui.listException();
+                    } else if (userInput.contains("deadline")) {
+                        Ui.deadlineException();
+                    } else if (userInput.contains("event")) {
+                        Ui.eventException();
+                    } else if (userInput.contains("done") || userInput.contains("delete")) {
+                        Ui.taskNoException();
+                    } else {
+                        Ui.indexException();
+                    }
+                    break;
+                } catch (IOException e) {
+                    Ui.fileIoException();
+                    break;
+                } catch (NumberFormatException e) {
+                    Ui.numberFormatException();
                     break;
                 }
-
-                int slashIndex;
-                if (userInput.equalsIgnoreCase("list")) {
-                    if (!userInput.equals("list")) {
-                        throw new CommandException();
-                    }
-                    Ui.listMessage(listOfTasks);
-                } else {
-                    if (userInput.length() > 6 && userInput.contains("delete")) {
-                        TaskList.delete(listOfTasks, userInput);
-                    } else if (userInput.length() > 4 && userInput.contains("done")) {
-                        TaskList.done(listOfTasks, userInput);
-                    } else if (userInput.length() > 4 && userInput.contains("find")) {
-                        TaskList.find(listOfTasks, userInput);
-                    } else {
-                        if (userInput.length() > 4 && userInput.contains("todo")
-                                && !userInput.substring(5).trim().isEmpty()) {
-                            TaskList.addTodo(listOfTasks, userInput);
-                        } else if (userInput.length() > 8 && userInput.contains("deadline")) {
-                            TaskList.addDeadline(listOfTasks, userInput);
-                        } else {
-                            TaskList.addEvent(listOfTasks, userInput);
-                        }
-                        Ui.taskMessage(listOfTasks);
-                    }
-                }
-                userInput = in.nextLine();
-            } catch (CommandException e) {
-                Duke.executeException(userInput);
-                break;
-            } catch (IndexOutOfBoundsException e) {
-                if (userInput.contains("list")) {
-                    Ui.listException();
-                } else if (userInput.contains("deadline")) {
-                    Ui.deadlineException();
-                } else if (userInput.contains("event")) {
-                    Ui.eventException();
-                } else if (userInput.contains("done") || userInput.contains("delete")) {
-                    Ui.taskNoException();
-                } else {
-                    Ui.indexException();
-                }
-                break;
-            } catch (IOException e) {
-                Ui.fileIoException();
-                break;
-            } catch (NumberFormatException e) {
-                Ui.numberFormatException();
+            }
+            if (userInput.equalsIgnoreCase("bye")) {
+                Ui.byeMessage();
                 break;
             }
         }

@@ -103,7 +103,7 @@ public class TaskList {
         Ui.findMessage();
         for (int index = 0; index < listOfTasks.size(); ++index) {
             int j = index + 1;
-            if ((listOfTasks.get(index)).toString().contains(findStrings[1])) {
+            if ((listOfTasks.get(index).getDescription()).toString().contains(findStrings[1])) {
                 Ui.findTasks(listOfTasks, j, index);
             }
         }

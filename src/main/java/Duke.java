@@ -34,7 +34,7 @@ public class Duke {
     }
 
     public static void executeException(String userInput) {
-        if (userInput.equals("todo") || userInput.substring(5).trim().isEmpty()) {
+        if (userInput.contains("todo") || (userInput.contains("todo") && userInput.substring(5).trim().isEmpty())) {
             Ui.todoException();
         } else if (userInput.contains("deadline")) {
             Ui.deadlineException();
