@@ -18,7 +18,9 @@ public class Parser {
     /**
      * Uses the user input to call methods from classes UI and TaskList.
      *
-     * @throws IOException
+     * @throws IOException           exception when there is an error with the file.
+     * @throws NumberFormatException exception when numbers are no integers,
+     *                               or there are no leading spaces before numbers.
      */
     public static void parse() throws IOException, NumberFormatException {
         while (true) {
@@ -26,8 +28,6 @@ public class Parser {
             String userInput = in.nextLine();
             while (!(userInput.equals("bye"))) {
                 try {
-
-
                     int slashIndex;
                     if (userInput.equalsIgnoreCase("list")) {
                         if (!userInput.equals("list")) {

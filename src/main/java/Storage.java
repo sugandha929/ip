@@ -20,8 +20,8 @@ public class Storage {
      * Creates a file and saves the task list.
      *
      * @param listOfTasks the complete list of tasks added by the user.
-     * @throws IOException
-     * @throws FileNotFoundException
+     * @throws IOException exception if there is an error with the file.
+     * @throws FileNotFoundException exception if the file does not exist.
      */
     public static void save(ArrayList<Task> listOfTasks) throws IOException, FileNotFoundException {
         try {
@@ -53,8 +53,8 @@ public class Storage {
      * @param fileName the path of the file to read from.
      * @param listOfTasks the complete list of tasks added by the user.
      * @return the number of tasks already present in the text file.
-     * @throws IOException
-     * @throws FileNotFoundException
+     * @throws IOException exception if there is an error with the file.
+     * @throws FileNotFoundException exception if the file does not exist.
      */
     public static int read(String fileName, ArrayList<Task> listOfTasks) throws IOException, FileNotFoundException {
         int taskIndex = 0;
